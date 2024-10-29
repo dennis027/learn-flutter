@@ -1,111 +1,51 @@
 import 'package:flutter/material.dart';
-
+import 'quote.dart';
 void main() {
   runApp(const MaterialApp(
-    home: DennisCard(),
+    home: QuoteList(),
   ));
 }
-class DennisCard extends StatefulWidget {
-  const DennisCard({super.key});
+
+class QuoteList extends StatefulWidget {
+  const QuoteList({super.key});
 
   @override
-  State<DennisCard> createState() => _DennisCardState();
+  State<QuoteList> createState() => _QuoteListState();
 }
 
-class _DennisCardState extends State<DennisCard> {
+class _QuoteListState extends State<QuoteList> {
 
-  int dennisLevel = 0;
+  List<Quote> quotes  = [
+    Quote(text:'Be yourself, everyone else is taken',   author:'dennis'),
+    Quote(text:'I have nothing else to declare except food', author:'macharia',),
+    Quote(text:'The trust is hardly broken', author:'kimani')
+
+
+  ];
+
+  List authors = [
+
+
+
+  ];
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.grey[900],
+      backgroundColor: Colors.grey[200],
       appBar: AppBar(
         title: Text(
-            'Dennis Card ',
-            style: TextStyle(color: Colors.white),
+            'Awesome Quote',
+            style: TextStyle(
+              color: Colors.white
+            ) ,
         ),
         centerTitle: true,
-        backgroundColor: Colors.grey[850],
-        elevation: 0.0,
+        backgroundColor: Colors.redAccent,
       ),
-      floatingActionButton: FloatingActionButton(
-          onPressed: (){
-            setState(() {
-              dennisLevel +=1;
-            });
-          },
-          child: Icon(Icons.add),
-          backgroundColor: Colors.grey[800],
+      body: Column(
+        children: quotes.map((quote) => Text('${quote.author} - ${quote.text}')).toList(), // Provides a direct list of widgets
       ),
-      body: Padding(
-          padding: EdgeInsets.fromLTRB(30, 30, 40, 0),
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              Center(
-                child: CircleAvatar(
-                  backgroundImage: AssetImage('assets/trumph.jpeg'),
-                  radius: 50,
-                ),
-              ),
-              Divider(
-                height: 60,
-                color: Colors.grey[800],),
-              Text(
-                'NAME',
-                style: TextStyle(
-                    color: Colors.grey,
-                    letterSpacing: 2.5),
-              ),
-              SizedBox(height: 20,),
-              Text(
-                'Dennis',
-                style: TextStyle(
-                    color: Colors.amberAccent[200],
-                    letterSpacing: 2.5,
-                    fontSize: 28,
-                    fontWeight: FontWeight.bold ),
-              ),
-              SizedBox(height: 30,),
-
-              Text(
-                'Current Dennis Level',
-                style: TextStyle(
-                    color: Colors.grey,
-                    letterSpacing: 2.5),
-              ),
-              SizedBox(height: 10,),
-              Text(
-                '$dennisLevel',
-                style: TextStyle(
-                    color: Colors.amberAccent[200],
-                    letterSpacing: 2.5,
-                    fontSize: 28,
-                    fontWeight: FontWeight.bold ),
-              ),
-              SizedBox(height: 30,),
-              Row(
-                children: [
-                  Icon(
-                    Icons.email,
-                    color: Colors.grey[400],
-                  ),
-                  SizedBox(width: 10,),
-                  Text(
-                      'machariad196@gmail.com',
-                      style: TextStyle(
-                        color: Colors.grey[400],
-                        fontSize: 18,
-                        letterSpacing: 2.5
-                      ),
-                  ),
-
-                ],
-              )
-            ],
-          ),),
     );
   }
 }
-
